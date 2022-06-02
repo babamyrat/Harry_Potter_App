@@ -21,11 +21,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     private List<UserModel> modelList;
     private Context context;
+    private ItemClickListener listener;
 
-    public UserAdapter(List<UserModel> modelList, Context context) {
+    public UserAdapter(List<UserModel> modelList, Context context, ItemClickListener listener) {
         this.modelList = modelList;
         this.context = context;
+        this.listener = listener;
     }
+
+    public void addItems(List<UserModel> userModels) {
+        modelList.clear();
+        modelList.addAll(userModels);
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
@@ -45,12 +54,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 .load(modelList.get(position).getStrImage())
                 .into(holder.imageView);
 
+        holder.itemView.setOnClickListener(view -> listener.onItemClick(modelList.get(position)));
+
     }
 
     @Override
     public int getItemCount() {
         return modelList.size();
     }
+
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
         TextView textView, textView2;
@@ -62,5 +74,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             imageView = itemView.findViewById(R.id.imageView);
 
         }
+    }
+
+    public interface ItemClickListener{
+        void onItemClick(UserModel userModel);
     }
 }

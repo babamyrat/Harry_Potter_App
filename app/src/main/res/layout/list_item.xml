@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginTop="25dp"
-        android:textSize="26sp"
-        android:maxLength="15"
+        android:textSize="24sp"
+        android:maxLength="18"
         android:textStyle="bold"
         android:text="TextView" />
 
@@ -41,7 +41,7 @@
             android:layout_marginStart="130dp"
             android:layout_marginTop="70dp"
             android:text="TextView"
-            android:textSize="22sp" />
+            android:textSize="24sp" />
 
 
     </androidx.cardview.widget.CardView>

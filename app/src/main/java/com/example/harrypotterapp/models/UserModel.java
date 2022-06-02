@@ -1,22 +1,25 @@
 package com.example.harrypotterapp.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class UserModel {
 
+    @SerializedName("idUser")
+    @Expose
     private Integer idUser;
+    @SerializedName("strName")
+    @Expose
     private String strName;
+    @SerializedName("inYear")
+    @Expose
     private Integer inYear;
+    @SerializedName("strImage")
+    @Expose
     private String strImage;
+    @SerializedName("strText")
+    @Expose
     private String strText;
-
-    public UserModel(Integer idUser, String strName,
-                     Integer inYear, String strImage,
-                     String strText) {
-        this.idUser = idUser;
-        this.strName = strName;
-        this.inYear = inYear;
-        this.strImage = strImage;
-        this.strText = strText;
-    }
 
     public Integer getIdUser() {
         return idUser;
