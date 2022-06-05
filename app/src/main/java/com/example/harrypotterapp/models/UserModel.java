@@ -1,10 +1,15 @@
 package com.example.harrypotterapp.models;
 
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "person")
 public class UserModel {
-
+    @PrimaryKey
     @SerializedName("idUser")
     @Expose
     private Integer idUser;

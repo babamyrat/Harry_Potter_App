@@ -4,9 +4,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.harrypotterapp.MainActivity;
 import com.example.harrypotterapp.R;
 import com.example.harrypotterapp.adapters.UserAdapter;
 import com.example.harrypotterapp.models.UserModel;
@@ -52,7 +53,6 @@ public class HomeFragment extends Fragment implements UserAdapter.ItemClickListe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(UserViewModel.class);
-
         initView();
         initObserve();
 
@@ -78,13 +78,21 @@ public class HomeFragment extends Fragment implements UserAdapter.ItemClickListe
     @Override
     public void onItemClick(UserModel userModel) {
         Fragment fragment = FullFragment.newInstance(userModel.getStrName(), userModel.getStrText(),
-                userModel.getStrImage());
+                userModel.getStrImage(), userModel.getInYear());
 
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment, "full_fragment");
         transaction.addToBackStack(null);
         transaction.commit();
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
     }
 
 

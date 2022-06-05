@@ -1,4 +1,6 @@
 package com.example.harrypotterapp.data.api;
+import static com.example.harrypotterapp.utils.Constant.BASE_URL;
+
 import com.example.harrypotterapp.domain.response.UserResponse;
 
 import io.reactivex.Observable;
@@ -25,7 +27,7 @@ public class ApiClient {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
-                .baseUrl("https://api.npoint.io")
+                .baseUrl(BASE_URL)
                 .build();
 
         apiService = retrofit.create(ApiService.class);
